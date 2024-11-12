@@ -23,7 +23,7 @@ body {
       rgba(241, 210, 70, 0.98),
       rgba(250, 176, 103, 0.87)
     ),
-    url('bg-pattern-dark.png');
+    url('/react-tictactoe/bg-pattern-dark.png');
   background-repeat: repeat;
   background-size: 100% 100%, 30% 30%, 100% 100%;
   min-height: 110rem;
@@ -72,6 +72,7 @@ h1 {
   align-items: center;
   width: 50%;
   border: 2px solid transparent;
+  border-radius: 1rem;
 }
 
 #players.highlight-player li.active {
@@ -184,6 +185,7 @@ ol {
   border: none;
   background: #aca788;
   color: #3f3b00;
+  /* color: white; */
   font-size: 5rem;
   cursor: pointer;
   font-family: 'Caprasimo', cursive;
@@ -348,4 +350,8 @@ ol {
   100% {
     transform: scale(1);
   }
+}
+
+#results {
+  text-align: center;
 }
