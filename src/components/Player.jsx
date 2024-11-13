@@ -14,35 +14,44 @@ export default function Player({
     }
 
     function handleEditClick() {
-        setIsEditing((editing) => !editing);
-        
         if (isEditing) {
+            // If we're finishing editing, update the player's name
             onChangePlayerName(symbol, playerName);
+        }
+        setIsEditing(!isEditing); // Toggle editing mode
+    }
+
+    function handleEnter(e) {
+        if (e.key === "Enter") {
+            handleEditClick();
         }
     }
 
-    let editablePlayerName = <span className="player-name">{playerName}</span>;
-
-    if (isEditing) {
-        editablePlayerName = (
-            <input
-                type="text"
-                required
-                value={playerName}
-                onChange={handleNameChange}
-            />
-        );
-    }
-
     return (
-        <li className={isActive ? "active" : undefined}>
+        <li className={isActive ? "active" : ""}>
             <span className="player">
-                {editablePlayerName}
+                {isEditing ? (
+                    <input
+                        type="text"
+                        value={playerName}
+                        onChange={handleNameChange}
+                        onKeyDown={handleEnter}
+                        onBlur={handleEditClick} // Close edit mode on blur
+                        autoFocus
+                        required
+                        aria-label={`Edit name for player ${symbol}`}
+                    />
+                ) : (
+                    <span
+                        className="player-name"
+                        onClick={handleEditClick}
+                        aria-label={`Player ${symbol} name: ${playerName}`}
+                    >
+                        {playerName}
+                    </span>
+                )}
                 <span className="player-symbol">{symbol}</span>
             </span>
-            <button onClick={handleEditClick}>
-                {isEditing ? "Save" : "Edit"}
-            </button>
         </li>
     );
 }
