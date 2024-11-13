@@ -1,5 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap");
 
+:root {
+    --text-primary: #e1dec7;
+    --highlight-color: #f6e35a;
+    --background-secondary: #383624;
+    --background-secondary-light: #282617;
+    --accent: #f8c031;
+    --shadow: rgba(217, 108, 108, 0.5);
+    --button-bg: #aca788;
+    --button-text: #3f3b00;
+    --overlay-bg: rgba(40, 38, 23, 0.95);
+    --border-color: #fcd256;
+    --pulse-text-color: #9f9d83;
+    --hint-text: #23221f;
+    --background-dark: black;
+    --text-white: white;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,9 +24,7 @@
 html {
     font-family: "Roboto Slab", sans-serif;
     line-height: 1.5;
-
     color: #ebe7ef;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -24,9 +39,6 @@ body {
             rgba(250, 176, 103, 0.87)
         ),
         url("/react-tictactoe/bg-pattern-dark.png");
-    background-repeat: repeat;
-    background-size: 100% 100%, 30% 30%, 100% 100%;
-    min-height: 110rem;
 }
 
 main {
@@ -37,12 +49,11 @@ main {
 }
 
 #game-container {
-    /* max-width: 45rem; */
     margin: auto auto;
     padding: 2rem;
     border-radius: 1rem;
     background: linear-gradient(#383624, #282617);
-    box-shadow: 0 0 20px rgba(217, 108, 108, 0.5);
+    box-shadow: 0 0 20px var(--shadow);
     position: relative;
 }
 
@@ -62,33 +73,16 @@ main {
     width: 50%;
     border: 2px solid transparent;
     border-radius: 1rem;
-    
 }
 
 #players.highlight-player li.active {
-    border-color: #f6e35a;
+    border-color: var(--highlight-color);
     animation: pulse 2s infinite ease-in-out;
 }
 
 #players.highlight-player li.active .player-name,
 #players.highlight-player li.active .player-symbol {
-    color: #f6e35a;
-}
-
-#players button {
-    width: 3rem;
-    border: none;
-    background: none;
-    color: #c3ba78;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: color 0.2s;
-    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
-    text-align: center;
-}
-
-#players button:hover {
-    color: #f8ca31;
+    color: var(--highlight-color);
 }
 
 .player {
@@ -99,10 +93,9 @@ main {
 }
 
 .player-name {
-    /* display: inline-block; */
     width: 10rem;
     font-size: 1rem;
-    color: #e1dec7;
+    color: var(--text-primary);
     text-transform: uppercase;
     margin: 0;
     padding: 0.5rem;
@@ -126,28 +119,13 @@ main {
 .player-symbol {
     margin-left: 1rem;
     font-size: 1rem;
-    color: #e1dec7;
+    color: var(--text-primary);
 }
 
 ol {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-#pre-game {
-    text-align: center;
-}
-
-#pre-game button {
-    cursor: pointer;
-    background: none;
-    color: #f8c031;
-    border: none;
-    font-family: "Caprasimo", cursive;
-    font-size: 4rem;
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-    animation: pulse-text-size 2s infinite ease-out;
 }
 
 #game-board {
@@ -173,9 +151,8 @@ ol {
     width: 8rem;
     height: 8rem;
     border: none;
-    background: #aca788;
-    color: #3f3b00;
-    /* color: white; */
+    background: var(--button-bg);
+    color: var(--button-text);
     font-size: 5rem;
     cursor: pointer;
     font-family: "Caprasimo", cursive;
@@ -194,20 +171,21 @@ ol {
     align-items: center;
     background-color: rgba(40, 38, 23, 0.95);
     animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+    border-radius: 1rem;
 }
 
 #game-over h2 {
     font-family: "Caprasimo", cursive;
     font-size: 4rem;
     text-align: center;
-    color: #fcd256;
+    color: var(--border-color);
     margin: 0;
 }
 
 #game-over p {
     font-size: 2rem;
     text-align: center;
-    color: #e1dec7;
+    color: var(--text-primary);
 }
 
 #game-over button {
@@ -215,8 +193,8 @@ ol {
     margin: 0 auto;
     font-size: 1.5rem;
     background: none;
-    border: 2px solid #fcd256;
-    color: #fcd256;
+    border: 2px solid var(--border-color);
+    color: var(--border-color);
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     cursor: pointer;
@@ -225,57 +203,20 @@ ol {
 }
 
 #game-over button:hover {
-    background: #fcd256;
-    color: #3f3b00;
+    background: var(--border-color);
+    color: var(--button-text);
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
 }
 
-#log {
-    max-width: 20rem;
-    color: #3f3b00;
-    list-style: none;
-    margin: 2rem auto;
-    padding: 0;
-    text-align: center;
-}
-
-#log li {
+#results {
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-dark);
+    color: var(--text-white);
+    padding: 1rem;
+    font-size: xx-large;
     border-radius: 1rem;
-    animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1)
-        forwards;
-    margin: 0.75rem;
-}
-
-#log li.highlighted {
-    background-color: #3f3b00;
-    color: white;
-}
-
-#game-hints {
-    text-align: center;
-    color: #46432f;
-}
-
-#game-hints h2 {
-    font-family: "Caprasimo", cursive;
-    font-size: 2rem;
-    margin: 0;
-}
-
-#game-hints ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#game-hints button {
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    color: #23221f;
-    font: inherit;
-    margin-top: 1.5rem;
 }
 
 @keyframes slide-in-from-left {
@@ -291,13 +232,13 @@ ol {
 
 @keyframes pulse-text {
     0% {
-        color: #e1dec7;
+        color: var(--text-primary);
     }
     50% {
-        color: #9f9d83;
+        color: var(--pulse-text-color);
     }
     100% {
-        color: #e1dec7;
+        color: var(--text-primary);
     }
 }
 
@@ -315,15 +256,15 @@ ol {
 
 @keyframes pulse {
     0% {
-        border-color: #f6e35a;
+        border-color: var(--highlight-color);
         box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
     }
     50% {
-        border-color: #f8c031;
+        border-color: var(--accent);
         box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
     }
     100% {
-        border-color: #f6e35a;
+        border-color: var(--highlight-color);
         box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
     }
 }
@@ -341,14 +282,4 @@ ol {
     100% {
         transform: scale(1);
     }
-}
-
-#results {
-    display: flex;
-    justify-content: center;
-    background-color: black;
-    color: white;
-    padding: 1rem;
-    font-size: xx-large;
-    border-radius: 1rem;
 }
